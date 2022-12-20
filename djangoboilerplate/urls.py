@@ -10,6 +10,7 @@ router.registry.extend(example_router.registry)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/', include('example.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls'))
 ]
