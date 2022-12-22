@@ -1,1 +1,1 @@
-from .schools import SchoolViewSet
+from .schools import SchoolViewSet, DistrictViewSet

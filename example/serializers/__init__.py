@@ -1,1 +1,1 @@
-from .schools import SchoolSerializer
+from .schools import SchoolSerializer, DistrictSerializer
