@@ -12,7 +12,14 @@ class DistrictSerializer(serializers.ModelSerializer):
 class SchoolSerializer(serializers.ModelSerializer):
     district = DistrictSerializer(read_only=True)
     district_id = serializers.IntegerField()
+    number_of_students = serializers.SerializerMethodField()
+
+    def get_number_of_students(self, obj):
+        return obj.students.count()
 
     class Meta:
         model = School
-        fields = ['name', 'category', 'district', 'district_id']
+        fields = [
+            'name', 'category', 'district', 'district_id',
+            'number_of_students'
+        ]
