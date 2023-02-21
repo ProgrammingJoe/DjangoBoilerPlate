@@ -5,21 +5,26 @@ from rest_framework import status
 from example.models import School
 
 
-def convert_constants_to_dropdown_format(constants):
+def format_constants_and_options(constants):
+    options_and_constants = {}
+
     option_list = []
 
     for item in constants:
+        options_and_constants[item[1]] = item[0]
         option_list.append({
             'value': item[0],
             'label': item[1]
         })
 
-    return option_list
+    options_and_constants['options'] = option_list
+
+    return options_and_constants
 
 
 @api_view(['GET'])
 @permission_classes([])
 def get_constants(request):
     return Response({
-        'schoolCategories': convert_constants_to_dropdown_format(School.HIGHSCHOOL_CATEGORY)
+        'schoolCategories': format_constants_and_options(School.HIGHSCHOOL_CATEGORY)
     }, status=status.HTTP_200_OK)
