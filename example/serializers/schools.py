@@ -30,6 +30,6 @@ class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
         fields = [
-            'name', 'category', 'district', 'district_id',
+            'id', 'name', 'category', 'district', 'district_id',
             'number_of_students'
         ]
