@@ -19,10 +19,12 @@ class SchoolSerializer(serializers.ModelSerializer):
         return obj.students.count()
 
     def validate(self, data):
+        request = self.context.get('request')
+
         district_id = data['district_id']
         number_schools_in_district = School.objects.filter(district__id=district_id).count()
 
-        if number_schools_in_district >= 10:
+        if request.method == "POST" and number_schools_in_district >= 10:
             raise ValidationError('Districts can have a maximum of 10 schools.')
 
         return data
